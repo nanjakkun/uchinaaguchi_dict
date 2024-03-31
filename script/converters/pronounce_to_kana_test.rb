@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'minitest/autorun'
-require_relative './pronounce_to_kana.rb'
+require_relative './pronounce_to_kana'
 
 class PronounceToKanaTest < Minitest::Test
-
   def test_case
     described_class = ::Converters::PronounceToKana
 

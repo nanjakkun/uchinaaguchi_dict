@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Converters
   class Table
-
     # 平民の発音対応表
     TABLE_COMMONER = {
       'a' => 'あ',
@@ -137,8 +138,8 @@ module Converters
       'Q' => 'っ',
       '-' => '-',
       '=' => '=',
-      '、' => '、',
-    }
+      '、' => '、'
+    }.freeze
 
     # 士族の発音対応表
     TABLE_WARRIOR = TABLE_COMMONER.merge(
@@ -159,5 +160,4 @@ module Converters
       'Co' => 'つぉ',
     )
   end
-
 end
