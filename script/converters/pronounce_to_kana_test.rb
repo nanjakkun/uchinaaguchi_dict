@@ -7,13 +7,18 @@ class PronounceToKanaTest < Minitest::Test
     described_class = ::Converters::PronounceToKana
 
     [
-      ['?aa', 'ああ'],
-      ['?aka', 'あか'],
+      ['ああ', '?aa'],
+      ['あか', '?aka'],
+      ['ちばち', 'Cibaci', false],
+      ['つぃばち', 'Cibaci', true],
+      ['じゅり', 'Zuri', false],
+      ['ずり', 'Zuri', true],
     ].each do |line|
-      pronounce = line[0]
-      kana = line[1]
+      kana = line[0]
+      pronounce = line[1]
+      by_warrior = line.length > 2 && line[2]
 
-      assert_equal kana, described_class.convert(pronounce)
+      assert_equal described_class.convert(pronounce, by_warrior), kana
     end
   end
 end
