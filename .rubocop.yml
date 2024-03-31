@@ -1,0 +1,40 @@
+require:
+  - rubocop-performance
+  - rubocop-minitest
+
+AllCops:
+  TargetRubyVersion: 3.2
+  Exclude:
+    - 'vendor/**/*'
+    - 'log/**/*'
+    - 'tmp/**/*'
+    - 'node_modules/**/*'
+  Include:
+    - '**/*.rb'
+    - '**/*.rake'
+    - '**/Rakefile'
+    - '**/Gemfile'
+  SuggestExtensions: false
+
+
+Metrics/ClassLength:
+  Exclude:
+  - '**/*_test.rb'
+  - 'script/converters/table.rb'
+
+Metrics/MethodLength:
+  Enabled: false
+
+# Configuration parameters: AllowedConstants.
+Style/Documentation:
+  Enabled: false
+
+Style/OptionalBooleanParameter:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  Enabled: false
+
