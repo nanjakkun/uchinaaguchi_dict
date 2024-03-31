@@ -43,8 +43,13 @@ namespace :generate do
             ['かな2', nil]
           end
 
-        # TODO　士族の言葉も作る
-        row << ['かな3', nil]
+        # 士族の発音が違う場合は”かな3"へ追記
+        row <<
+          if %w[sj Z C].any? { |chars| row['見出し語'].include?(chars) }
+            ['かな3', ::Converters::PronounceToKana.convert(row['見出し語'], true)]
+          else
+            ['かな3', nil]
+          end
 
         out_csv << keys.map { |key| row[key] }
 
