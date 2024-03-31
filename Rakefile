@@ -35,12 +35,13 @@ namespace :generate do
       CSV.read('data/okinawa1.csv', headers: true).each.with_index(1) do |row, index|
         row << ['かな1', ::Converters::PronounceToKana.convert(row['見出し語'])]
 
-        # =junで終わる動詞は"いん"と"ゆん"の見出し語を作る
-        if row['見出し語'].end_with?('=juN')
-          row << ['かな2', ::Converters::PronounceToKana.convert(row['見出し語'].sub(/=juN/, '=in'))]
-        else
-          row << ['かな2', nil]
-        end
+        # =juNで終わる動詞は"いん"と"ゆん"の見出し語を作る
+        row <<
+          if row['見出し語'].end_with?('=juN')
+            ['かな2', ::Converters::PronounceToKana.convert(row['見出し語'].sub(/=juN/, '=in'))]
+          else
+            ['かな2', nil]
+          end
 
         # TODO　士族の言葉も作る
         row << ['かな3', nil]
