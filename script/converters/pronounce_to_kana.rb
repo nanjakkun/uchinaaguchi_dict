@@ -97,7 +97,7 @@ module Converters
           end
         end
 
-        is_head_of_word = ::Regexp.last_match(1) && ::Regexp.last_match(1) == '='
+        is_head_of_word = ::Regexp.last_match(1) && [',', '、'].include?(::Regexp.last_match(1))
       end
 
       out
