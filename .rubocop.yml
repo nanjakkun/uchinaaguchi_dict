@@ -29,6 +29,9 @@ Metrics/MethodLength:
 Style/Documentation:
   Enabled: false
 
+Style/IfUnlessModifier:
+  Enabled: false
+
 Style/OptionalBooleanParameter:
   Enabled: false
 

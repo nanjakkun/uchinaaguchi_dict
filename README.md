@@ -22,5 +22,5 @@ https://creativecommons.org/licenses/by/4.0/
 # dataフォルダ内のファイル
 
 - okinawa.xlsx: 国立国語研究所で配布されている元データ
-- okinawa.csv: okinawa.xlsxをCSV化したもの（若干誤字等の修正あり）
-
+- okinawa1.csv: okinawa.xlsxをCSV化したもの（若干誤字等の修正あり）
+- okinawa2.csv: okinawa1.csvに仮名の読みを付与したもの
