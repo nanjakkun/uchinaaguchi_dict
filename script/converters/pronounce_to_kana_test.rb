@@ -7,7 +7,7 @@ class PronounceToKanaTest < Minitest::Test
     described_class = ::Converters::PronounceToKana
 
     [
-      ['ああ', '?aa'],
+      ['あー', '?aa'],
       ['あか', '?aka'],
       ['ちばち', 'Cibaci', false],
       ['つぃばち', 'Cibaci', true],

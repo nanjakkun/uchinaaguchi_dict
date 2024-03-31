@@ -10,8 +10,9 @@ module Converters
           ::Converters::Table::TABLE_COMMONER
         end
 
-      is_head_of_word = true
       text = pronounce
+      is_head_of_word = true
+      last_char = ''
       out = ''
 
       while (text && text.size > 0)
@@ -32,6 +33,7 @@ module Converters
           else
             raise ArgumentError.new(pronounce)
           end
+          last_char = text[$1.length]
           text = text[($1.length+1)..]
         elsif text.start_with?('\'')
           case text
@@ -48,18 +50,22 @@ module Converters
             raise ArgumentError.new(pronounce)
           end
 
+          last_char = text[$1.length]
           text = text[($1.length+1)..]
         else
           case text
           when /^([aiueo])/
-            # TODO: 前の文字と母音が同じなら長音”ー”に置き換える
-
-            char = table[$1]
-            # 行頭のみ捨て仮名を前に付与
-            if is_head_of_word
-              out << self.to_sutegana(char)
+            # 前の文字と母音が同じなら長音”ー”に置き換える
+            if last_char == $1
+              out << 'ー'
+            else
+              char = table[$1]
+              # 行頭のみ捨て仮名を前に付与
+              if is_head_of_word
+                out << self.to_sutegana(char)
+              end
+              out << char
             end
-            out << char
           when /^(nN)[^aiueo]/, /^(ja|ju|jo|hja|hju|hjo|bja|bju|bjo|pja|pju|pjo|mja|mju|mjo|rja|rju|rjo|wa|wi|we|kwa|kwi|kwe|gwa|gwi|gwe)/
             out << table[$1]
           when /^((k|g|s|S|sj|z|Z|t|d|c|C|n|h|hw|p|b|bw|m|r)[aiueo])/
@@ -81,8 +87,10 @@ module Converters
           end
 
           if $1
+            last_char = text[$1.length - 1]
             text = text[$1.length..]
           else
+            last_char = ''
             text = text[1..]
           end
         end
