@@ -42,6 +42,7 @@ module Converters
           case text
           when /^'(i|u|e|o|N|n)/
             char = table[::Regexp.last_match(1)]
+            out << to_sutegana(char)
             out << char
           when /^'(w(a|i|e))/
             char = table[::Regexp.last_match(1)]
