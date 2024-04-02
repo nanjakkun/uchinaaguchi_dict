@@ -29,7 +29,7 @@ jobs:
       with:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run tests
-      run: bundle exec ruby script/converters/pronounce_to_kana_test.rb 
+      run: bundle exec rake test
   lint:
     runs-on: ubuntu-latest
     steps:
