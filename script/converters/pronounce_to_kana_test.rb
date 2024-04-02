@@ -10,8 +10,11 @@ class PronounceToKanaTest < Minitest::Test
     [
       ['あー', '?aa'],
       ['あか', '?aka'],
+      ['あぐなー', '?agunaa'],
       ['ちばち', 'Cibaci', false],
       ['つぃばち', 'Cibaci', true],
+      ['うとぅ', '?utu'],
+      ['ぅうとぅ', "'utu"],
       ['じゅり', 'Zuri', false],
       ['ずり', 'Zuri', true],
     ].each do |line|

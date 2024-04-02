@@ -28,7 +28,7 @@ https://creativecommons.org/licenses/by/4.0/
 
 # 変換スクリプトの実行
 
-bundle exec rake generate:csv[1, 100] # プレビュー(先頭100件)
+bundle exec rake generate:csv[1,100] # プレビュー(先頭100件)
 
 bundle exec rake generate:csv[] # 本実行
 
