@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'csv'
+require 'rake/testtask'
 
 require_relative './script/converters/pronounce_to_kana'
 
@@ -13,6 +14,7 @@ namespace :generate do
     end
 
     keys = [
+      'id',
       '辞書ページ',
       '見出し語',
       'かな1',
@@ -34,6 +36,7 @@ namespace :generate do
       out_csv << keys
 
       CSV.read('data/okinawa1.csv', headers: true).each.with_index(1) do |row, index|
+        row['id'] = index
         row << ['かな1', ::Converters::PronounceToKana.convert(row['見出し語'])]
 
         # =juNで終わる動詞は"いん"と"ゆん"の見出し語を作る
@@ -70,8 +73,6 @@ namespace :generate do
     # TODO: 作業中
   end
 end
-
-require 'rake/testtask'
 
 Rake::TestTask.new do |test|
   test.test_files = Dir['script/**/*_test.rb']
