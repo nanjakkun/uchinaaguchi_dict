@@ -24,3 +24,13 @@ https://creativecommons.org/licenses/by/4.0/
 - okinawa.xlsx: 国立国語研究所で配布されている元データ
 - okinawa1.csv: okinawa.xlsxをCSV化したもの（若干誤字等の修正あり）
 - okinawa2.csv: okinawa1.csvに仮名の読みを付与したもの
+
+
+# 変換スクリプトの実行
+
+bundle exec rake generate:csv[1, 100] # プレビュー(先頭100件)
+bundle exec rake generate:csv[] # 本実行
+
+# テスト(Ruby)
+
+bundle exec rake test

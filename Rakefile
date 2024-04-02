@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'csv'
+
 require_relative './script/converters/pronounce_to_kana'
 
 # rubocop:disable Metrics/BlockLength
@@ -68,5 +69,12 @@ namespace :generate do
   task :seed_sql do
     # TODO: 作業中
   end
+end
+
+require 'rake/testtask'
+
+Rake::TestTask.new do |test|
+  test.test_files = Dir['script/**/*_test.rb']
+  test.verbose = true
 end
 # rubocop:enable Metrics/BlockLength
