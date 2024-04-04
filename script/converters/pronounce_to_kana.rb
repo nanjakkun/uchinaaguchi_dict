@@ -40,9 +40,12 @@ module Converters
           text = text[(::Regexp.last_match(1).length + 1)..]
         elsif text.start_with?('\'')
           case text
-          when /^'(i|u|e|o|N|n)/
+          when /^'(i|u|e|o)/
             char = table[::Regexp.last_match(1)]
             out << to_sutegana(char)
+            out << char
+          when /^'([N|n]{1,2})/
+            char = table[::Regexp.last_match(1)]
             out << char
           when /^'(w(a|i|e))/
             char = table[::Regexp.last_match(1)]

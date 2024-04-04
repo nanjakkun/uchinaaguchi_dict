@@ -13,6 +13,7 @@ class PronounceToKanaTest < Minitest::Test
       ['あぐなー', '?agunaa'],
       ['ちばち', 'Cibaci', false],
       ['つぃばち', 'Cibaci', true],
+      ['んーじゅん', "'NNzuN"],
       ['うとぅ', '?utu'],
       ['ぅうとぅ', "'utu"],
       ['じゅり', 'Zuri', false],
