@@ -26,12 +26,34 @@ https://creativecommons.org/licenses/by/4.0/
 - okinawa2.csv: okinawa1.csvに仮名の読みを付与したもの
 
 
+# ローカルで動かすための要件
+
+Ruby
+
+# インストール
+
+```bash
+gem install bundler
+bundle install
+```
+
 # 変換スクリプトの実行
 
+```bash
 bundle exec rake generate:csv[1,100] # プレビュー(先頭100件)
 
 bundle exec rake generate:csv[] # 本実行
+```
 
-# テスト(Ruby)
+# 変換スクリプトのユニットテスト(Ruby)
 
+```bash
 bundle exec rake test
+```
+
+# 静的サイトの立ち上げ(ローカル)
+
+```bash
+bundle exec jekyll serve
+```
+
