@@ -78,7 +78,8 @@ Rake::TestTask.new do |test|
   test.test_files = Dir['script/**/*_test.rb']
   test.verbose = true
 end
-# rubocop:enable Metrics/BlockLength
+
 require 'jekyll/vite'
 ViteRuby.install_tasks
 
+# rubocop:enable Metrics/BlockLength
