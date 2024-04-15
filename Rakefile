@@ -79,7 +79,4 @@ Rake::TestTask.new do |test|
   test.verbose = true
 end
 
-require 'jekyll/vite'
-ViteRuby.install_tasks
-
 # rubocop:enable Metrics/BlockLength
