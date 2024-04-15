@@ -7,7 +7,7 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://nanjakkun.github.io',
-  base: '/uchinaaguchi-dict',
+  base: '/uchinaaguchi_dict',
   integrations: [react(), tailwind()],
   vite: {
     ssr: {
