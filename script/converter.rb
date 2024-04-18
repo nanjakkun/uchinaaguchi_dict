@@ -25,7 +25,7 @@ class Converter
     '備考'
   ].freeze
 
-  # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+  # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity,Metrics/BlockLength
   def self.convert(dry: true, rows: nil)
     if dry
       puts '実際に書き込みは行わずに結果をプレビューします'
@@ -55,7 +55,18 @@ class Converter
             ['かな3', nil]
           end
 
-        out_csv << KEYS.map { |key| row[key] }
+        out_csv << KEYS.map do |key|
+          # カンマを読点に変換
+          # - CSVの扱いが楽になるように
+          # - 日本語、沖縄語の文章にカンマが入ると不自然なので
+          column_data = row[key]
+
+          if column_data.is_a?(String)
+            column_data.tr(',', '、')
+          else
+            column_data
+          end
+        end
 
         break if rows.to_i.positive? && index >= rows.to_i
       end
@@ -67,5 +78,5 @@ class Converter
       File.write(DESTINSTION_FILE, csv_data)
     end
   end
-  # rubocop:enable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+  # rubocop:enable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity,Metrics/BlockLength
 end
