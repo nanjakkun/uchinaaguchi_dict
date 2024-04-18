@@ -10,12 +10,15 @@ const base_url = import.meta.env.BASE_URL;
  */
 export const Dictionary = () => {
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<string>("")
+  const [rows, setRows] = useState<string[]>([])
 
   useEffect(() => {
     const fetchCSV = async () => {
-      const data = (await fetch(base_url + "/data/okinawa2.csv")).text();
-      setData(await data);
+      const promise = (await fetch(base_url + "/data/okinawa2.csv")).text();
+      const rows = (await promise).split("\n")
+
+      // TODO: 列分解
+      setRows(rows);
     }
     fetchCSV();
     setLoading(false);
