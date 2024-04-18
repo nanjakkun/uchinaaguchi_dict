@@ -1,4 +1,7 @@
 ---
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+
 interface Props {
   title: string;
   description: string;
@@ -18,33 +21,18 @@ const { title, description } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <Header />
     <main>
       <article>
-        <div class="article-header mb-6">
-          <h1 class="text-3xl text-gray-800 text-center m-2">{title}</h1>
-          <p class="text-center text-gray-600">
-            {description}
-          </p>
-        </div>
         <slot />
       </article>
     </main>
+    <Footer />
   </body>
 </html>
 <style is:global>
   html {
     font-family: system-ui, sans-serif;
-  }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
   }
   main {
     margin: auto;
