@@ -24,7 +24,9 @@ https://creativecommons.org/licenses/by/4.0/
 ### dataフォルダ内のファイル
 
 - okinawa.xlsx: 国立国語研究所で配布されている元データ
-- okinawa1.csv: okinawa.xlsxをCSV化したもの（若干誤字等の修正あり）
+- okinawa1.csv: okinawa.xlsxをCSV化したもの（誤字等の修正あり）
+
+### public/data内のファイル
 - okinawa2.csv: okinawa1.csvに仮名の読みを付与したもの
 
 
@@ -41,15 +43,15 @@ gem install bundler
 bundle install
 ```
 
-### 変換スクリプトの実行
+### データ加工スクリプトの実行
 
 ```bash
-bundle exec rake generate:csv[1,100] # プレビュー(先頭100件)
+bundle exec rake convert:csv[1,100] # プレビュー(先頭100件)
 
-bundle exec rake generate:csv[] # 本実行
+bundle exec rake convert:csv[] # 書き込みあり
 ```
 
-### 変換スクリプトのユニットテスト(Ruby)
+### データ加工のユニットテスト(Ruby)
 
 ```bash
 bundle exec rake test
@@ -61,3 +63,17 @@ bundle exec rake test
 npm run dev
 ```
 
+
+## 技術スタック
+### データ加工スクリプト
+
+- Ruby
+- minitest
+
+
+### 静的サイト
+
+- Astro
+- TypeScript
+- React
+- Tailwind
