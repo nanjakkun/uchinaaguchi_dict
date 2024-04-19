@@ -1,6 +1,7 @@
 import type { LookupRequestT } from "@/types/LookupRequestT";
 import type { LookupResponseT } from "@/types/LookupResponseT";
 import { ColumnIndex } from "@/components/dictionary/ColumnIndex";
+import { normalize_text } from "@/components/dictionary/normalize_text";
 
 const PAGE_SIZE = 20;
 
@@ -12,9 +13,10 @@ export const look_up = ({
   text,
   mode,
 }: LookupRequestT): LookupResponseT => {
-  const trimmed = text.trim();
+  const normalized = normalize_text(text);
 
-  if (trimmed.length < 2) {
+  // TODO: 全角で文字数数える
+  if (normalized.length < 2) {
     return {
       count: 0,
       rows: [],
@@ -39,17 +41,17 @@ export const look_up = ({
     switch (mode) {
       case "forward":
         for (let i = 0; i < 3; i++) {
-          matched = matched || row[ColumnIndex.KANA_1 + i].startsWith(trimmed);
+          matched = matched || row[ColumnIndex.KANA_1 + i].startsWith(normalized);
         }
         break;
       case "backward":
         for (let i = 0; i < 3; i++) {
-          matched = matched || row[ColumnIndex.KANA_1 + i].endsWith(trimmed);
+          matched = matched || row[ColumnIndex.KANA_1 + i].endsWith(normalized);
         }
         break;
       case "exact":
         for (let i = 0; i < 3; i++) {
-          matched = matched || row[ColumnIndex.KANA_1 + i] == trimmed;
+          matched = matched || row[ColumnIndex.KANA_1 + i] == normalized;
         }
         break;
       case "body":
