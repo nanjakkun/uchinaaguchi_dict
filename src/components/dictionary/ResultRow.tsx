@@ -23,7 +23,7 @@ export const ResultRow = ({ row }: Props) => {
     <div key={row[0]}>
       <hr />
       <h2 className="font-bold m-2">{kana_str}</h2>
-      <p className="pl-2">{row[ColumnIndex.MEANING_1]}</p>
+      <p className="pl-4 pb-2">{row[ColumnIndex.MEANING_1]}</p>
       <hr />
     </div>
   );
