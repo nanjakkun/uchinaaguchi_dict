@@ -1,5 +1,5 @@
-import type { LookupRequest } from "@/types/LookupRequest";
-import type { LookupResponse } from "@/types/LookupResponse";
+import type { LookupRequestT } from "@/types/LookupRequestT";
+import type { LookupResponseT } from "@/types/LookupResponseT";
 
 const PAGE_SIZE = 20;
 const KANA_1_INDEX = 3;
@@ -12,7 +12,7 @@ export const look_up = ({
   dict,
   text,
   mode,
-}: LookupRequest): LookupResponse => {
+}: LookupRequestT): LookupResponseT => {
   const trimmed = text.trim();
 
   if (trimmed.length < 2) {
