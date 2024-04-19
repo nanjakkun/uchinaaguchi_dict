@@ -2,7 +2,6 @@
 
 うちなーぐち辞典(沖縄語辞典)
 
-
 ## データについて
 
 ### 元データとライセンス
@@ -14,12 +13,10 @@ https://mmsrv.ninjal.ac.jp/okinawago/
 クリエイティブ・コモンズ・ライセンス
 https://creativecommons.org/licenses/by/4.0/
 
-
 ### 改変項目
 
 - 誤字、誤植、文字化けの修正
 - 見出し語が元データでは独自の発音記号であったが、ひらがな表記を追加
-
 
 ### dataフォルダ内のファイル
 
@@ -27,8 +24,8 @@ https://creativecommons.org/licenses/by/4.0/
 - okinawa1.csv: okinawa.xlsxをCSV化したもの（誤字等の修正あり）
 
 ### public/data内のファイル
-- okinawa2.csv: okinawa1.csvに仮名の読みを付与したもの
 
+- okinawa2.csv: okinawa1.csvに仮名の読みを付与したもの
 
 ## ローカルで動かす
 
@@ -63,13 +60,12 @@ bundle exec rake test
 npm run dev
 ```
 
-
 ## 技術スタック
+
 ### データ加工スクリプト
 
 - Ruby
 - minitest
-
 
 ### 静的サイト
 
