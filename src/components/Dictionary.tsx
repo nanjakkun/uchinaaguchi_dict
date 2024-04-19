@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import { look_up } from "@/components/dictionary/look_up";
 import { ResultRow } from "@/components/dictionary/ResultRow";
-import type { LookupResponse } from "@/types/LookupResponse";
+import type { LookupResponseT } from "@/types/LookupResponseT";
 
 const base_url = import.meta.env.BASE_URL;
 
@@ -17,7 +17,7 @@ export const Dictionary = () => {
   const [dict, setDict] = useState<string[][]>([]);
   const [text, setText] = useState("");
 
-  const [lookupRes, setLookupRes] = useState<LookupResponse>({
+  const [lookupRes, setLookupRes] = useState<LookupResponseT>({
     count: 0,
     rows: [],
   });

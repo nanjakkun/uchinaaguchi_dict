@@ -1,18 +1,17 @@
-import type { LookupRequest } from "@/types/LookupRequest";
-import type { LookupResponse } from "@/types/LookupResponse";
+import type { LookupRequestT } from "@/types/LookupRequestT";
+import type { LookupResponseT } from "@/types/LookupResponseT";
+import { ColumnIndex } from "@/components/dictionary/ColumnIndex";
 
 const PAGE_SIZE = 20;
-const KANA_1_INDEX = 3;
-const MEANING_1_INDEX = 10;
 
 /*
-  辞書データを与えられたテキストで絞り込む
+  Lookup words from dictionary
 */
 export const look_up = ({
   dict,
   text,
   mode,
-}: LookupRequest): LookupResponse => {
+}: LookupRequestT): LookupResponseT => {
   const trimmed = text.trim();
 
   if (trimmed.length < 2) {
@@ -26,12 +25,12 @@ export const look_up = ({
   let count = 0;
 
   for (let row of dict) {
-    // ヘッダ行は飛ばす
-    if (row[0] == "id") {
+    // skip header
+    if (row[ColumnIndex.ID] == "id") {
       continue;
     }
 
-    if (row.length < MEANING_1_INDEX + 4) {
+    if (row.length < ColumnIndex.MEANING_1 + 4) {
       continue;
     }
 
@@ -40,18 +39,22 @@ export const look_up = ({
     switch (mode) {
       case "forward":
         for (let i = 0; i < 3; i++) {
-          matched = matched || row[KANA_1_INDEX + i].startsWith(trimmed);
+          matched = matched || row[ColumnIndex.KANA_1 + i].startsWith(trimmed);
         }
+        break;
       case "backward":
         for (let i = 0; i < 3; i++) {
-          matched = matched || row[KANA_1_INDEX + i].endsWith(trimmed);
+          matched = matched || row[ColumnIndex.KANA_1 + i].endsWith(trimmed);
         }
+        break;
       case "exact":
         for (let i = 0; i < 3; i++) {
-          matched = matched || row[KANA_1_INDEX + i] == trimmed;
+          matched = matched || row[ColumnIndex.KANA_1 + i] == trimmed;
         }
+        break;
       case "body":
-      // TODO:
+        // TODO:
+        break;
     }
 
     if (matched) {

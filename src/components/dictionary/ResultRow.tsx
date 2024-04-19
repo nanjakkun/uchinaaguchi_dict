@@ -1,3 +1,5 @@
+import { ColumnIndex } from "@/components/dictionary/ColumnIndex";
+
 /**
  * Lookup Result Row
  */
@@ -7,10 +9,22 @@ type Props = {
 };
 
 export const ResultRow = ({ row }: Props) => {
-  return <div key={row[0]}>
-    <hr />
-      <h2 className="font-bold m-2">{row[3]}</h2>
-      <p className="pl-2">{row[10]}</p>
-    <hr />
-  </div>;
+  const kana_str: string = [
+    row[ColumnIndex.KANA_1],
+    row[ColumnIndex.KANA_2],
+    row[ColumnIndex.KANA_3],
+  ]
+    .filter((kana) => {
+      return kana != "";
+    })
+    .join("、");
+
+  return (
+    <div key={row[0]}>
+      <hr />
+      <h2 className="font-bold m-2">{kana_str}</h2>
+      <p className="pl-2">{row[ColumnIndex.MEANING_1]}</p>
+      <hr />
+    </div>
+  );
 };
