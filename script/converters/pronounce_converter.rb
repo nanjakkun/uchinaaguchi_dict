@@ -1,11 +1,12 @@
 # frozen_string_literal: false
 
 require_relative './table'
+require_relative './convert_error'
 
 # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/BlockNesting
 module Converters
-  class PronounceToKana
-    def self.convert(pronounce, by_warrior = false)
+  class PronounceConverter
+    def self.pronounce_to_kana(pronounce, by_warrior = false)
       table =
         if by_warrior
           ::Converters::Table::TABLE_WARRIOR
@@ -34,7 +35,7 @@ module Converters
             out << 'っ'
             out << char
           else
-            raise ArgumentError, pronounce
+            raise ::Converters::ConvertError, pronounce
           end
           last_char = text[::Regexp.last_match(1).length]
           text = text[(::Regexp.last_match(1).length + 1)..]
@@ -54,7 +55,7 @@ module Converters
             char = table[::Regexp.last_match(1)]
             out << char
           else
-            raise ArgumentError, pronounce
+            raise ::Converters::ConvertError, pronounce
           end
 
           last_char = text[::Regexp.last_match(1).length]
@@ -74,22 +75,22 @@ module Converters
           when /^(nN)[^aiueo]/, \
             /^(ja|ju|jo|hja|hju|hjo|bja|bju|bjo|pja|pju|pjo|mja|mju|mjo|rja|rju|rjo|wa|wi|we|kwa|kwi|kwe|gwa|gwi|gwe)/
             out << table[::Regexp.last_match(1)]
-          when /^((k|g|s|S|sj|z|Z|t|d|c|C|n|h|hw|p|b|bw|m|r)[aiueo])/
+          when /^((k|g|s|S|sj|z|Z|t|d|c|C|n|h|hw|p|P|b|bw|m|r)[aiueo])/
             out << table[::Regexp.last_match(1)]
           when /^(hN)/
             out << table[::Regexp.last_match(1)]
           when /^([nN])/
             out << table[::Regexp.last_match(1)]
-          when /^([-=、])/
+          when /^([-=、\\.])/
             out << table[::Regexp.last_match(1)]
-          when /^([qQ])[kCsStcmnp\]=]/
+          when /^([qQ])[kCsStcmnpP\]=]/
             out << table[::Regexp.last_match(1)]
           when /^([qQ])$/
             out << table[::Regexp.last_match(1)]
           when /^([\]()\s])/
             # discard
           else
-            raise ArgumentError, pronounce
+            raise ::Converters::ConvertError, pronounce
           end
 
           if ::Regexp.last_match(1)
