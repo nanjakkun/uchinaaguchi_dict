@@ -6,7 +6,7 @@ const KANA_1_INDEX = 3;
 const MEANING_1_INDEX = 10;
 
 /*
-  辞書データを与えられたテキストで絞り込む
+  Lookup words from dictionary
 */
 export const look_up = ({
   dict,
@@ -26,7 +26,7 @@ export const look_up = ({
   let count = 0;
 
   for (let row of dict) {
-    // ヘッダ行は飛ばす
+    // skip header
     if (row[0] == "id") {
       continue;
     }
@@ -42,16 +42,20 @@ export const look_up = ({
         for (let i = 0; i < 3; i++) {
           matched = matched || row[KANA_1_INDEX + i].startsWith(trimmed);
         }
+        break;
       case "backward":
         for (let i = 0; i < 3; i++) {
           matched = matched || row[KANA_1_INDEX + i].endsWith(trimmed);
         }
+        break;
       case "exact":
         for (let i = 0; i < 3; i++) {
           matched = matched || row[KANA_1_INDEX + i] == trimmed;
         }
+        break;
       case "body":
-      // TODO:
+        // TODO:
+        break;
     }
 
     if (matched) {
