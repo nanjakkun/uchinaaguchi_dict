@@ -41,7 +41,8 @@ export const look_up = ({
     switch (mode) {
       case "forward":
         for (let i = 0; i < 3; i++) {
-          matched = matched || row[ColumnIndex.KANA_1 + i].startsWith(normalized);
+          matched =
+            matched || row[ColumnIndex.KANA_1 + i].startsWith(normalized);
         }
         break;
       case "backward":

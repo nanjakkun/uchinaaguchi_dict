@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.1.0",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host 0.0.0.0",
     "start": "astro dev",
     "build": "astro check && astro build",
     "format": "prettier --ignore-path .gitignore --write './**/*.{js,cjs,ts,jsx,tsx,astro,json,html,md}'",
