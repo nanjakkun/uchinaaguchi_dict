@@ -1,6 +1,7 @@
 # frozen_string_literal: false
 
 require 'minitest/autorun'
+require 'minitest/color'
 require_relative './body_converter'
 
 class BodyConverterTest < Minitest::Test

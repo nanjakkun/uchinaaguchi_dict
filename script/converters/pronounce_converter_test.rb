@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
+require 'minitest/color'
 require_relative './pronounce_converter'
 
 class PronounceConverterTest < Minitest::Test
