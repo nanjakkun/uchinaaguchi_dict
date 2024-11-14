@@ -3,7 +3,7 @@ import type { LookupResponseT } from "@/types/LookupResponseT";
 import { ColumnIndex } from "@/components/dictionary/ColumnIndex";
 import { normalize_text } from "@/components/dictionary/normalize_text";
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 500;
 
 /*
   Lookup words from dictionary
@@ -15,10 +15,10 @@ export const look_up = ({
 }: LookupRequestT): LookupResponseT => {
   const normalized = normalize_text(text);
 
-  // TODO: 全角で文字数数える
   if (normalized.length < 1) {
     return {
       count: 0,
+      overflowed: false,
       rows: [],
     };
   }
@@ -57,21 +57,29 @@ export const look_up = ({
         break;
       case "body":
         for (let i = 0; i < 5; i++) {
-          matched = matched || row[ColumnIndex.MEANING_1].indexOf(normalized) >= 0;
+          matched =
+            matched || row[ColumnIndex.MEANING_1].indexOf(normalized) >= 0;
         }
         break;
     }
 
     if (matched) {
       count += 1;
-      if (row.length <= PAGE_SIZE) {
-        rows.push(row);
+      rows.push(row);
+
+      if (count >= PAGE_SIZE) {
+        return {
+          count,
+          overflowed: true,
+          rows,
+        };
       }
     }
   }
 
   return {
     count,
+    overflowed: false,
     rows,
   };
 };
