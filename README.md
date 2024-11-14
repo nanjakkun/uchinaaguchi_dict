@@ -32,12 +32,15 @@ https://creativecommons.org/licenses/by/4.0/
 ### 前提条件
 
 Ruby
+Nodejs
 
 ### インストール
 
 ```bash
 gem install bundler
 bundle install
+
+npm install
 ```
 
 ### データ加工スクリプトの実行
