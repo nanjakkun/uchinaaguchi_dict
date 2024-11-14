@@ -1,5 +1,7 @@
+import type { TextMatchMode } from "./TextMatchMode";
+
 export type LookupRequestT = {
   dict: string[][];
   text: string;
-  mode: "forward" | "backward" | "exact" | "body";
+  textMacthMode: TextMatchMode;
 };
