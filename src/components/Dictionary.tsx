@@ -21,6 +21,7 @@ export const Dictionary = () => {
 
   const [lookupRes, setLookupRes] = useState<LookupResponseT>({
     count: 0,
+    overflowed: false,
     rows: [],
   });
 
@@ -61,7 +62,7 @@ export const Dictionary = () => {
 
   // TODO: ぐるぐる出す
   return (
-    <div className="">
+    <div className="text-lg">
       <div className="flex justify-center">
         <input
           type="text"
@@ -73,14 +74,16 @@ export const Dictionary = () => {
           }}
         />
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center my-2 text-base md:text-lg">
         <Toggle
           onChange={onTextMatchModeChange}
           selected={textMacthMode}
         ></Toggle>
       </div>
       <div>
-        <p>{lookupRes.count} 件の検索結果</p>
+        <p>
+          {lookupRes.count} 件{lookupRes.overflowed ? "以上" : ""}の検索結果
+        </p>
         <div>
           {lookupRes.rows.map((row) => {
             return <ResultRow row={row} />;
