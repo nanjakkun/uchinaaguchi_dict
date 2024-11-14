@@ -1,9 +1,10 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 
 import { look_up } from "@/components/dictionary/look_up";
 import { ResultRow } from "@/components/dictionary/ResultRow";
 import type { LookupResponseT } from "@/types/LookupResponseT";
+import type { TextMatchMode } from "@/types/TextMatchMode";
+import { Toggle } from "./dictionary/Toggle";
 
 const base_url = import.meta.env.BASE_URL;
 
@@ -16,6 +17,7 @@ export const Dictionary = () => {
   const [loading, setLoading] = useState(true);
   const [dict, setDict] = useState<string[][]>([]);
   const [text, setText] = useState("");
+  const [textMacthMode, setTextMacthMode] = useState<TextMatchMode>("forward");
 
   const [lookupRes, setLookupRes] = useState<LookupResponseT>({
     count: 0,
@@ -29,16 +31,20 @@ export const Dictionary = () => {
       const rows = (await promise).split("\n");
 
       setDict(rows.map((r) => r.split(",")));
+      setLoading(false);
     };
     fetchCSV();
-    setLoading(false);
   }, []);
 
   useEffect(() => {
+    if (loading) {
+      return;
+    }
+
     const res = look_up({
       dict,
       text,
-      mode: "forward",
+      textMacthMode,
     });
 
     // TODO: URLを操作
@@ -46,10 +52,14 @@ export const Dictionary = () => {
     // TODO: debounceで動作が軽くなるか検証
 
     setLookupRes(res);
-  }, [text]);
+  }, [loading, text, textMacthMode]);
 
-  // TODO: loading中は操作できなくする
+  const onTextMatchModeChange = (ev: ChangeEvent<HTMLInputElement>) => {
+    const val = ev.target.value;
+    setTextMacthMode(val as TextMatchMode);
+  };
 
+  // TODO: ぐるぐる出す
   return (
     <div className="">
       <div className="flex justify-center">
@@ -62,6 +72,12 @@ export const Dictionary = () => {
             setText(e.target.value);
           }}
         />
+      </div>
+      <div className="flex justify-center">
+        <Toggle
+          onChange={onTextMatchModeChange}
+          selected={textMacthMode}
+        ></Toggle>
       </div>
       <div>
         <p>{lookupRes.count} 件の検索結果</p>

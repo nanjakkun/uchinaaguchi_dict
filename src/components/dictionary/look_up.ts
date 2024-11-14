@@ -11,12 +11,12 @@ const PAGE_SIZE = 20;
 export const look_up = ({
   dict,
   text,
-  mode,
+  textMacthMode,
 }: LookupRequestT): LookupResponseT => {
   const normalized = normalize_text(text);
 
   // TODO: 全角で文字数数える
-  if (normalized.length < 2) {
+  if (normalized.length < 1) {
     return {
       count: 0,
       rows: [],
@@ -38,7 +38,7 @@ export const look_up = ({
 
     let matched = false;
 
-    switch (mode) {
+    switch (textMacthMode) {
       case "forward":
         for (let i = 0; i < 3; i++) {
           matched =
@@ -56,7 +56,9 @@ export const look_up = ({
         }
         break;
       case "body":
-        // TODO:
+        for (let i = 0; i < 5; i++) {
+          matched = matched || row[ColumnIndex.MEANING_1].indexOf(normalized) >= 0;
+        }
         break;
     }
 
