@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (8.0.0)
+    activesupport (8.0.1)
       base64
       benchmark (>= 0.3)
       bigdecimal
@@ -25,8 +25,8 @@ GEM
       concurrent-ruby (~> 1.0)
     json (2.9.0)
     language_server-protocol (3.17.0.3)
-    logger (1.6.1)
-    minitest (5.25.1)
+    logger (1.6.3)
+    minitest (5.25.4)
     minitest-color (0.0.2)
       minitest (~> 5)
     parallel (1.26.3)
@@ -56,20 +56,20 @@ GEM
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
     ruby-progressbar (1.13.0)
-    securerandom (0.3.1)
+    securerandom (0.4.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.1.2)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
-    uri (1.0.1)
+    uri (1.0.2)
 
 PLATFORMS
   ruby
   x86_64-linux
 
 DEPENDENCIES
-  activesupport (~> 8.0.0)
+  activesupport (~> 8.0.1)
   http_parser.rb (~> 0.6.0)
   minitest-color
   rake
