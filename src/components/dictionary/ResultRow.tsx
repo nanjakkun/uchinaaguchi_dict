@@ -1,4 +1,5 @@
 import { ColumnIndex } from "@/components/dictionary/ColumnIndex";
+import "../../styles/global.css";
 
 /**
  * Lookup Result Row

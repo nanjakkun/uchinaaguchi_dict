@@ -86,7 +86,7 @@ export const Dictionary = () => {
         </p>
         <div>
           {lookupRes.rows.map((row) => {
-            return <ResultRow row={row} />;
+            return <ResultRow row={row} key={row[0]}/>;
           })}
         </div>
       </div>
