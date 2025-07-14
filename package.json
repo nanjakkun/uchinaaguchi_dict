@@ -24,7 +24,7 @@
     "typescript": "^5.8.3"
   },
   "devDependencies": {
-    "@playwright/test": "^1.53.2",
+    "@playwright/test": "^1.54.1",
     "@types/node": "^22.15.29",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1"
