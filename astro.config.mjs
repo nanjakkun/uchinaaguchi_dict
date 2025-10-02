@@ -13,5 +13,7 @@ export default defineConfig({
     ssr: {
       noExternal: [],
     },
+
+    plugins: [tailwindcss()],
   },
 });
