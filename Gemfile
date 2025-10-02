@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.3.9'
 
-gem 'activesupport', '~> 8.0.2'
+gem 'activesupport', '~> 8.0.3'
 
 gem 'rake'
 
