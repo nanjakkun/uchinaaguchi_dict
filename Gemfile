@@ -7,6 +7,8 @@ ruby '3.4.7'
 
 gem 'activesupport', '~> 8.0.3'
 
+gem 'csv'
+
 gem 'rake'
 
 gem 'rubocop'
