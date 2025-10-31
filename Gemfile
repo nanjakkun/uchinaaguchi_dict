@@ -3,9 +3,11 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.3.9'
+ruby '3.4.7'
 
 gem 'activesupport', '~> 8.0.3'
+
+gem 'csv'
 
 gem 'rake'
 
