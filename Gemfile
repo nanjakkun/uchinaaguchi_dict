@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.4.9'
 
-gem 'activesupport', '~> 8.1.2'
+gem 'activesupport', '~> 8.1.3'
 
 gem 'csv'
 
